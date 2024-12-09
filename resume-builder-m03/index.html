@@ -13,6 +13,7 @@
         <li id="personal-input">
             <h1>Personal Details</h1>
                 <input type="file" accept="Image" id="image" >
+                <label for="image" id="image-label">upload image</label>
                 <input id="name-input" data-preview="name" placeholder="Name">
                 <input id="career-input" data-preview="career" placeholder="Career">
             <input id="about-input" data-preview="about" placeholder="About Me/Objective">
@@ -52,7 +53,7 @@
     <div id="resume-main-container">
         <div id="left-side-bar">
             <div id="profile-picture">
-                <img src="kashiwagi.jpg" alt="profile-picture" id="profile-image">
+                <img src="blank-profile-picture-973460_1280.webp" alt="profile-picture" id="profile-image">
 
             </div>
                 <div id="left-side-bar-content">
@@ -76,14 +77,14 @@
                     </div>
                         <div>
                             <h2>Skills</h2>
-                            <button id="show-hide-skills" onclick="SkillsTabFunction()" class="transition-button"><p><i class="arrow up"></i></p></button>
+                            <!-- <button id="show-hide-skills" onclick="SkillsTabFunction()" class="transition-button"><p><i class="arrow up"></i></p></button> -->
                                 <ul id="skills-list">
                                     <li id="skills"></li>
                                 </ul>
                         </div>
                     <div id="Language">
                         <h2>Language</h2>
-                        <button id="show-hide-languages" onclick="hideFunction()" class="transition-button"><p><i class="arrow up"></i></p></button>
+                        <!-- <button id="show-hide-languages" onclick="hideFunction()" class="transition-button"><p><i class="arrow up"></i></p></button> -->
                             <ul id="language-lists">
                                 <li id="language">--</li>
                             </ul>
@@ -116,7 +117,35 @@
                 </div>
             </div>        
     </div><!-- main-container-div -->
+
+    
+        <button id="download-pdf" onclick="printPdf()">download PDF</button>
+        <div id="credits">
+            <h1>Created by Abdullah Arshad</h1>
+
+            <div id="github-link"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt=""><a href="https://github.com/Abdullah-765" target="_blank">Github</a></div>
+        </div>
+
+        <script>
+            // downloading pdf js
+            function printPdf(){
+                const resume = document.getElementById("resume-main-container")
+                const pdfName = document.getElementById("name")
+
+
+                const options = {
+                    filename: `${pdfName.innerHTML}.pdf`,
+                    image: { type: "jpeg", quality: 0.98 },
+                    html2canvas: { scale:2 }, 
+                    jsPDF: { unit: "in", format: [8.27, 11.69], orientation: "portrait" },
+                };
+
+              html2pdf().set(options).from(resume).save();
+            }
+        </script>
         <script src="script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
 </body>
 
 </html>
